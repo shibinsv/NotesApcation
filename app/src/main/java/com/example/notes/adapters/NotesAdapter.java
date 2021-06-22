@@ -100,8 +100,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         TextView descET;
         @BindView(R.id.dateET)
         TextView dateET;
-        @BindView(R.id.editIV)
-        TextView editIV;
         @BindView(R.id.deleteIV)
         TextView deleteIV;
         @BindView(R.id.layoutNote)
@@ -128,67 +126,75 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                     viewNotesDialog.getWindow().setLayout(width, height);
                     viewNotesDialog.show();
 
-                }
-            });
-
-            editIV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int sID=mainData.getID();
+                    ConstraintLayout viewNoteLayout  = viewNotesDialog.findViewById(R.id.viewNoteLayout);
+                    TextView titleAdd = viewNotesDialog.findViewById(R.id.noteTitle);
+                    TextView descAdd = viewNotesDialog.findViewById(R.id.noteDescription);
+                    TextView dateAdd = viewNotesDialog.findViewById(R.id.noteDate);
+                    LinearLayout btnEdit = viewNotesDialog.findViewById(R.id.editNote);
                     String sTitle=mainData.getTitle();
                     String sDesc=mainData.getDescription();
                     String sDate=mainData.getDate();
+                    titleAdd.setText(sTitle);
+                    descAdd.setText(sDesc);
+                    dateAdd.setText(sDate);
 
-                    Dialog dialog =new Dialog(mMainActivity);
-                    dialog.setContentView(R.layout.edit_dialog);
-                    int width= WindowManager.LayoutParams.MATCH_PARENT;
-                    int height=WindowManager.LayoutParams.WRAP_CONTENT;
-                    dialog.getWindow().setLayout(width,height);
-                    dialog.show();
-
-                    EditText editTitle =dialog.findViewById(R.id.titleUpdate);
-                    EditText editDescription=dialog.findViewById(R.id.descUpdate);
-                    TextView editDate =dialog.findViewById(R.id.dateUpdate);
-                    Button btnUpdate=dialog.findViewById(R.id.btnUpdate);
-
-                    Calendar myCalendar= Calendar.getInstance();
-                    final DatePickerDialog.OnDateSetListener dateSetListener= (view, year, month, dayOfMonth) -> {
-                        myCalendar.set(Calendar.YEAR, year);
-                        myCalendar.set(Calendar.MONTH, month);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        String myFormat = "dd/MMM/yyyy";
-                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
-                        editDate.setText(sdf.format(myCalendar.getTime()));
-                    };
-
-                    editDate.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            new DatePickerDialog(mMainActivity, dateSetListener, myCalendar
-                                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                                    myCalendar.get(Calendar.DAY_OF_MONTH)).show(); }
-                    });
-
-                    editTitle.setText(sTitle);
-                    editDescription.setText(sDesc);
-
-                    btnUpdate.setOnClickListener(new View.OnClickListener() {
+                    btnEdit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            String newTitle =editTitle.getText().toString().trim();
-                            String newDescription =editDescription.getText().toString().trim();
-                            String newDate =editDate.getText().toString().trim();
+                            viewNotesDialog.dismiss();
+                            int sID=mainData.getID();
+                            Dialog dialog =new Dialog(mMainActivity);
+                            dialog.setContentView(R.layout.edit_dialog);
+                            int width= WindowManager.LayoutParams.MATCH_PARENT;
+                            int height=WindowManager.LayoutParams.WRAP_CONTENT;
+                            dialog.getWindow().setLayout(width,height);
+                            dialog.show();
 
-                            database.dao().update(sID,newTitle,newDescription,newDate);
+                            EditText editTitle =dialog.findViewById(R.id.titleUpdate);
+                            EditText editDescription=dialog.findViewById(R.id.descUpdate);
+                            TextView editDate =dialog.findViewById(R.id.dateUpdate);
+                            Button btnUpdate=dialog.findViewById(R.id.btnUpdate);
 
-                            list.clear();
-                            list.addAll(database.dao().getAll());
-                            notifyDataSetChanged();
-                            dialog.dismiss();
+                            Calendar myCalendar= Calendar.getInstance();
+                            final DatePickerDialog.OnDateSetListener dateSetListener= (view, year, month, dayOfMonth) -> {
+                                myCalendar.set(Calendar.YEAR, year);
+                                myCalendar.set(Calendar.MONTH, month);
+                                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                                String myFormat = "dd/MMM/yyyy";
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
+                                editDate.setText(sdf.format(myCalendar.getTime()));
+                            };
+
+                            editDate.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    new DatePickerDialog(mMainActivity, dateSetListener, myCalendar
+                                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                            myCalendar.get(Calendar.DAY_OF_MONTH)).show(); }
+                            });
+
+                            editTitle.setText(sTitle);
+                            editDescription.setText(sDesc);
+
+                            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String newTitle =editTitle.getText().toString().trim();
+                                    String newDescription =editDescription.getText().toString().trim();
+                                    String newDate =editDate.getText().toString().trim();
+
+                                    database.dao().update(sID,newTitle,newDescription,newDate);
+
+                                    list.clear();
+                                    list.addAll(database.dao().getAll());
+                                    notifyDataSetChanged();
+                                    dialog.dismiss();
+                                }
+                            });
                         }
                     });
-
                 }
+
             });
 
             GradientDrawable gradientDrawable = (GradientDrawable) layoutNote.getBackground();
