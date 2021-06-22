@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addNoteLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/black">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_task"
+            android:textColor="@color/grey_200"
+            android:gravity="center"
+            android:textSize="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+
+        <EditText
+            android:id="@+id/titleAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/titleET"
+            android:textColor="@color/grey_200"
+            android:textColorHint="@color/grey_200"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"/>
+
+        <View
+            android:id="@+id/viewSubtitleIndicator"
+            android:layout_width="5sp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:background="@drawable/bg_subtitle_indicator"
+            android:layout_marginLeft="@dimen/_12sdp" />
+
+        <EditText
+            android:id="@+id/descAdd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:gravity="start"
+            android:hint="@string/description"
+            android:textColor="@color/grey_200"
+            android:textColorHint="@color/grey_200"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"/>
+
+        <TextView
+            android:id="@+id/dateAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/colorred"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            app:drawableLeftCompat="@drawable/date_add" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:id="@+id/saveLayout"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:drawableLeft="@drawable/ic_save"
+                android:backgroundTint="@color/teal_200"
+                android:text="@string/save"
+                android:textColor="@color/black"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_bottom_notes"
+        layout="@layout/notes_color"/>
+
+</LinearLayout>

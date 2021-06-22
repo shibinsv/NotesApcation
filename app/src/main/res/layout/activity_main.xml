@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".activities.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ll_container"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="horizontal"
+               android:layout_marginTop="@dimen/_10sdp">
+               <TextView
+                   android:layout_width="@dimen/_100sdp"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/_25sdp"
+                   android:textColor="@color/white"
+                   android:text="Notes"/>
+               <TextView
+                   android:id="@+id/addNotes"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
+                   android:background="@drawable/notes_add"
+                   android:textColor="@color/black"
+                   android:layout_toLeftOf="@+id/deleteAllNotes"
+                   android:layout_marginEnd="@dimen/_15sdp"
+                   android:layout_gravity="end"/>
+               <TextView
+                   android:id="@+id/deleteAllNotes"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
+                   android:background="@drawable/ic_baseline_delete_sweep_24"
+                   android:layout_alignParentEnd="true"
+                   android:textColor="@color/black"
+                   android:layout_marginEnd="@dimen/_15sdp"
+                   android:layout_gravity="end"/>
+           </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

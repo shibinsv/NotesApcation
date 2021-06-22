@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="titleET">Title</string>
+    <string name="description">Description</string>
+    <string name="date_added">Date added</string>
+    <string name="add_task">Add Notes</string>
+    <string name="date">DD/MM/YYYY</string>
+    <string name="save">Save</string>
+    <string name="note_color">Note color</string>
+    <string name="pick_color">Pick one :</string>
+    <string name="edit_task_details">Edit task</string>
+    <string name="update">Update</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+</resources>
